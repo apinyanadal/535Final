@@ -52,9 +52,9 @@
 <div class="wrap">
   <h1>Paying for Supply</h1>
   <p class="sub">The 30-year Treasury auction concession · FINTECH 535 final project, part 1: investment thesis ·
-     Alex Pinya Nadal · tracker updated every night · data through <span id="asof">…</span></p>
+     Alex Pina-Nadal &amp; Hanna Boudara · tracker updated every night · data through <span id="asof">…</span></p>
   <nav><a href="#thesis">Thesis</a><a href="#horizon">Time horizon</a><a href="#tracker">Tracker</a>
-       <a href="#wrong">Wrong if</a><a href="#alpha">Alpha and cost</a><a href="#macro">Macro</a><a href="#method">Method</a></nav>
+       <a href="#wrong">Wrong if</a><a href="#alpha">Alpha and cost</a><a href="#macro">Macro</a><a href="#next">Part 2</a><a href="#method">Method</a></nav>
   <div class="tiles" id="tiles"></div>
 
   <!-- ============================================================ 1 -->
@@ -75,7 +75,7 @@
   </div>
   <div class="fact" id="headline">…</div>
   <div class="prose">
-    <p>I also tested whether the yield falls back after the auction. Since 2020 it has not: on average it kept
+    <p>We also tested whether the yield falls back after the auction. Since 2020 it has not: on average it kept
        rising for two more sessions. So the thesis trades only the run-up.</p>
     <p><b>Planned trade:</b> short TLT (the 20+ year Treasury ETF) at the open five sessions before each 30-year
        auction, and buy it back at the open on auction day, before the 1pm result.</p>
@@ -130,7 +130,7 @@
        <span id="wrong1Hist"></span></p>
     <p><b>2</b> targets the cause. The concession exists because the supply is large; if Treasury shrinks the
        30-year auction, the thesis loses its reason. The tracker compares every new size with the previous one.</p>
-    <p><b>3</b> targets crowding. If traders start selling long bonds earlier, the rise moves out of my five-session
+    <p><b>3</b> targets crowding. If traders start selling long bonds earlier, the rise moves out of our five-session
        window. The concession might still exist, but this trade would no longer capture it.</p>
   </div>
   <h3>Figure 4. Excess run-up at each auction</h3>
@@ -167,7 +167,29 @@
   </div>
 
   <!-- ============================================================ 7 -->
-  <h2 id="method">7. Method and data</h2>
+  <h2 id="next">7. Next: part 2</h2>
+  <div class="prose">
+    <p>The tracker shows the yield pattern is strong but the TLT trade keeps only part of it. Part 2 turns the thesis
+       into a live strategy and tries to close that gap.</p>
+    <ul>
+      <li><b>Run it live on Sanji.</b> The nightly job will write the orders: short at the open five sessions before
+          each 30-year auction, buy to cover at the open on auction day, with dates taken from Treasury's tentative
+          schedule.</li>
+      <li><b>Test longer-duration instruments.</b> EDV and ZROZ hold 25+ year zero-coupon Treasuries and move about
+          1.5 times as much as TLT per bp. Profit scales with that sensitivity while carry scales with dollars, so
+          carry should take a smaller share of the edge.</li>
+      <li><b>Add a GO/NO-GO filter.</b> A logistic classifier, as in our earlier filtering work, using only information
+          available before entry: the recent trend in the 30-year yield, the Fed's direction, the auction size against
+          the previous one, and bond-market volatility.</li>
+      <li><b>Test timing, without snooping.</b> Choose any change to entry or exit days on 2010 to 2019 only, then
+          judge it on 2020 to 2026.</li>
+      <li><b>Full backtest.</b> Blotter, ledger, carry and borrow costs, compared with holding TLT and holding cash.
+          If a wrong-if condition triggers, the strategy stops trading.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ 8 -->
+  <h2 id="method">8. Method and data</h2>
   <div class="prose">
     <ul>
       <li><b>Sample.</b> Every nominal 30-year auction since January 2010, new issues and reopenings. TIPS excluded.</li>
@@ -245,7 +267,7 @@ function render(d) {
   $("horizonText").innerHTML = `Years, not months. The concession pays for something the market needs every time:
     someone has to hold $22 to 25 billion of new long bonds until final buyers take them. That need lasts as long as
     Treasury auctions long bonds in size and dealer balance sheets stay limited. The excess run-up was positive in
-    ${a.years_positive} of the last ${a.years} years; it was negative in ${negYears.length > 1 ? negYears.slice(0, -1).join(", ") + " and " + negYears[negYears.length - 1] : negYears.join("")}. I review the thesis
+    ${a.years_positive} of the last ${a.years} years; it was negative in ${negYears.length > 1 ? negYears.slice(0, -1).join(", ") + " and " + negYears[negYears.length - 1] : negYears.join("")}. We review the thesis
     at every quarterly refunding; the next is in early February 2027.`;
 
   // ---------- figure 1
