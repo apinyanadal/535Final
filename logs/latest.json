@@ -1,5 +1,5 @@
 {
- "run_at": "2026-11-25 00:39 UTC",
+ "run_at": "2026-11-25 01:02 UTC",
  "last_yield_date": "2026-11-24",
  "sources": {
   "fiscaldata": "ok",
@@ -7,7 +7,7 @@
   "tentative_schedule": "ok (TentativeAuctionScheduleQ42026.pdf)",
   "fred": "ok",
   "treasury_par": "ok",
-  "lseg": "skipped"
+  "lseg": "ok (4291 rows, opens yes)"
  },
  "next_auction": {
   "date": "2026-12-10",
