@@ -1,0 +1,72 @@
+name: Nightly tracker
+
+# Rebuilds data/tracker.json every night: Treasury auctions, the 30-year yield, and TLT from LSEG.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "run = normal, no-lseg = skip LSEG, diagnose = LSEG connection test only"
+        type: choice
+        options: [run, no-lseg, diagnose]
+        default: run
+  schedule:
+    # 03:00 UTC = 10pm EST / 11pm EDT, after Treasury posts the day's par yields.
+    - cron: "0 3 * * *"
+
+concurrency:
+  group: nightly-tracker
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  tracker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Raw LSEG prices stay out of the public repo. They live in the Actions cache, so each night
+      # only the last two weeks are requested from LSEG.
+      - name: Restore TLT cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/tlt.csv
+          key: tlt-${{ github.run_id }}
+          restore-keys: tlt-
+
+      - name: Run tracker
+        env:
+          LSEG_APP_KEY: ${{ secrets.LSEG_APP_KEY }}
+          LSEG_USERNAME: ${{ secrets.LSEG_USERNAME }}
+          LSEG_PASSWORD: ${{ secrets.LSEG_PASSWORD }}
+          MODE: ${{ github.event.inputs.mode || 'run' }}
+        run: |
+          case "$MODE" in
+            diagnose) python tracker.py --diagnose ;;
+            no-lseg)  python tracker.py --no-lseg ;;
+            *)        python tracker.py ;;
+          esac
+
+      - name: Save TLT cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/tlt.csv
+          key: tlt-${{ github.run_id }}
+
+      - name: Commit tracker data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update tracker data"
+          file_pattern: "data/tracker.json data/events_30y.csv data/auctions_30y.csv data/dgs30.csv logs/latest.json"
