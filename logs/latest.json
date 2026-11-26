@@ -1,13 +1,13 @@
 {
- "run_at": "2026-11-25 12:13 UTC",
- "last_yield_date": "2026-11-24",
+ "run_at": "2026-11-26 11:57 UTC",
+ "last_yield_date": "2026-11-25",
  "sources": {
   "fiscaldata": "ok",
   "treasurydirect": "ok",
   "tentative_schedule": "ok (TentativeAuctionScheduleQ42026.pdf)",
   "fred": "ok",
   "treasury_par": "ok",
-  "lseg": "ok (10 rows, opens yes)"
+  "lseg": "ok (12 rows, opens yes)"
  },
  "next_auction": {
   "date": "2026-12-10",
