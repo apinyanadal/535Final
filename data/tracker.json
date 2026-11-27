@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26 11:57 UTC",
+ "generated_at": "2026-11-27 11:50 UTC",
  "last_yield_date": "2026-11-25",
  "y_now": 5.24,
  "next_auction": {
@@ -20510,6 +20510,6 @@
   "tentative_schedule": "ok (TentativeAuctionScheduleQ42026.pdf)",
   "fred": "ok",
   "treasury_par": "ok",
-  "lseg": "ok (12 rows, opens yes)"
+  "lseg": "ok (10 rows, opens yes)"
  }
 }
