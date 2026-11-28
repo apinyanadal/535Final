@@ -1,19 +1,19 @@
 {
- "run_at": "2026-11-27 11:50 UTC",
- "last_yield_date": "2026-11-25",
+ "run_at": "2026-11-28 11:26 UTC",
+ "last_yield_date": "2026-11-27",
  "sources": {
   "fiscaldata": "ok",
   "treasurydirect": "ok",
   "tentative_schedule": "ok (TentativeAuctionScheduleQ42026.pdf)",
   "fred": "ok",
   "treasury_par": "ok",
-  "lseg": "ok (10 rows, opens yes)"
+  "lseg": "ok (11 rows, opens yes)"
  },
  "next_auction": {
   "date": "2026-12-10",
   "reopening": true,
   "offering_bn": null,
-  "status": "tentative",
+  "status": "announced",
   "entry": "2026-12-03"
  },
  "wrong_if_triggered": [],

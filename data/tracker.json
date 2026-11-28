@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-27 11:50 UTC",
- "last_yield_date": "2026-11-25",
- "y_now": 5.24,
+ "generated_at": "2026-11-28 11:26 UTC",
+ "last_yield_date": "2026-11-27",
+ "y_now": 5.33,
  "next_auction": {
   "date": "2026-12-10",
   "reopening": true,
   "offering_bn": null,
-  "status": "tentative",
+  "status": "announced",
   "entry": "2026-12-03"
  },
  "in_window": false,
@@ -4253,7 +4253,8 @@
    "2026-11-20",
    "2026-11-23",
    "2026-11-24",
-   "2026-11-25"
+   "2026-11-25",
+   "2026-11-27"
   ],
   "run": [
    0.0,
@@ -8472,6 +8473,7 @@
    483.0,
    484.0,
    484.0,
+   493.0,
    493.0,
    493.0,
    493.0,
@@ -12711,7 +12713,8 @@
    -425.0,
    -427.0,
    -426.0,
-   -432.0
+   -432.0,
+   -423.0
   ],
   "total": [
    2.0,
@@ -16940,10 +16943,11 @@
    68.0,
    66.0,
    67.0,
-   61.0
+   61.0,
+   70.0
   ],
   "run_days": 1015,
-  "other_days": 3212
+  "other_days": 3213
  },
  "path": {
   "k": [
@@ -17005,7 +17009,6 @@
  },
  "live": {
   "dates": [
-   "2026-06-04",
    "2026-06-05",
    "2026-06-08",
    "2026-06-09",
@@ -17124,10 +17127,10 @@
    "2026-11-20",
    "2026-11-23",
    "2026-11-24",
-   "2026-11-25"
+   "2026-11-25",
+   "2026-11-27"
   ],
   "y": [
-   4.97,
    5.01,
    5.03,
    5.01,
@@ -17246,7 +17249,8 @@
    5.31,
    5.29,
    5.3,
-   5.24
+   5.24,
+   5.33
   ],
   "windows": [
    {
@@ -17335,7 +17339,7 @@
   "t_stat": 3.0,
   "years_positive": 14,
   "years": 17,
-  "slope": -0.157,
+  "slope": -0.156,
   "slope_source": "LSEG TLT vs DGS30, last 2 years",
   "gross_pct": 0.23,
   "gross_source": "TLT from LSEG, 196 trades",
@@ -17351,7 +17355,7 @@
   "trades_per_year": 12,
   "net_year_pct": 1.2,
   "sharpe": 0.18,
-  "y_now": 5.24
+  "y_now": 5.33
  },
  "by_year": [
   {
@@ -20510,6 +20514,6 @@
   "tentative_schedule": "ok (TentativeAuctionScheduleQ42026.pdf)",
   "fred": "ok",
   "treasury_par": "ok",
-  "lseg": "ok (10 rows, opens yes)"
+  "lseg": "ok (11 rows, opens yes)"
  }
 }
